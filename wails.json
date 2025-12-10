@@ -1,0 +1,22 @@
+{
+  "name": "pica3",
+  "description": "Transparent window demo on Wails",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "version": "1.0.0",
+  "wailsVersion": "~2.11.0",
+  "outputfilename": "pica3",
+  "assetdirectory": "frontend/dist",
+  "wailsjsdir": "frontend/wailsjs",
+  "devServerURL": "",
+  "frontend": {
+    "dir": "frontend",
+    "install": "",
+    "build": ""
+  },
+  "obfuscated": false,
+  "loglevel": "info",
+  "loglevelfrontend": "error"
+}
