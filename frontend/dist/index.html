@@ -8,10 +8,52 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div class="window-controls">
+      <button id="minimize-btn" class="control-btn" title="Згорнути">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <line x1="0" y1="6" x2="12" y2="6" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </button>
+      <button id="maximize-btn" class="control-btn" title="Повний екран">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <rect x="1" y="1" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </button>
+      <button id="close-btn" class="control-btn close" title="Закрити">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <line x1="1" y1="1" x2="11" y2="11" stroke="currentColor" stroke-width="1"/>
+          <line x1="11" y1="1" x2="1" y2="11" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </button>
+    </div>
     <div class="glass-card">
       <h2>Pica3</h2>
       <p>Прозоре вікно з ефектом скла!</p>
       <p>Ви повинні бачити ваші обої крізь це вікно.</p>
     </div>
+    <script src="wailsjs/runtime/runtime.js"></script>
+    <script src="wailsjs/go/app/App.js"></script>
+    <script>
+      // Згорнути вікно
+      document.getElementById('minimize-btn').addEventListener('click', () => {
+        window.runtime.WindowMinimise();
+      });
+
+      // Повний екран / вихід з повного екрану
+      let isMaximized = false;
+      document.getElementById('maximize-btn').addEventListener('click', () => {
+        if (isMaximized) {
+          window.runtime.WindowUnmaximise();
+        } else {
+          window.runtime.WindowMaximise();
+        }
+        isMaximized = !isMaximized;
+      });
+
+      // Закрити програму
+      document.getElementById('close-btn').addEventListener('click', () => {
+        window.runtime.Quit();
+      });
+    </script>
   </body>
 </html>
