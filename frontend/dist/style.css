@@ -1,50 +1,180 @@
-* {
-    box-sizing: border-box;
-}
-
-html {
-    height: 100%;
-    background: transparent !important;
-}
-
 body {
-    min-height: 100%;
-    background: transparent !important;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
+    background-color: transparent;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    user-select: none;
 }
 
-.glass-card {
-    width: 400px;
-    min-height: 250px;
-    margin: 50px auto;
-    padding: 30px;
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    --glass-bg: rgba(20, 20, 20, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 20px;
+}
 
-    /* Ефект скла - більш помітний */
+#image-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 10;
+}
+
+#placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--glass-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    transition: background 0.2s;
+    z-index: 20;
+}
+
+#placeholder:hover {
+    background: rgba(40, 40, 40, 0.8);
+}
+
+.icon-add {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+#main-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: none;
+    cursor: grab;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+}
+
+#main-image:active {
+    cursor: grabbing;
+}
+
+#ui-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.glass-control {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 8px;
+    pointer-events: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#controls button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+    min-width: 40px;
+}
+
+#controls button:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    box-shadow:
-        0 8px 32px 0 rgba(0, 0, 0, 0.37),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
-    color: #333;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-.glass-card h2 {
-    margin-top: 0;
-    color: #222;
-    font-size: 32px;
-    font-weight: 600;
+#controls #zoom-level {
+    font-size: 0.9rem;
+    min-width: 60px;
 }
 
-.glass-card p {
-    color: #444;
-    font-size: 16px;
-    line-height: 1.6;
+.divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 5px;
+}
+
+#gallery-strip {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    max-width: 90%;
+    padding: 10px;
+    height: 80px;
+    align-items: center;
+}
+
+#gallery-strip::-webkit-scrollbar {
+    height: 6px;
+}
+
+#gallery-strip::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail.active {
+    border-color: #3b82f6;
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.thumbnail:hover {
+    opacity: 0.9;
 }

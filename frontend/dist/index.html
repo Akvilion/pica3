@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pica3</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="glass-card">
-      <h2>Pica3</h2>
-      <p>Прозоре вікно з ефектом скла!</p>
-      <p>Ви повинні бачити ваші обої крізь це вікно.</p>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pica3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div id="image-container">
+      <div id="placeholder" onclick="selectImage()">
+        <div class="icon-add">+</div>
+        <p>Click to Open Image</p>
+      </div>
+      <img id="main-image" src="" alt="" draggable="false">
     </div>
-  </body>
+
+    <div id="ui-overlay">
+      <div id="controls" class="glass-control">
+        <button onclick="prevImage()" title="Previous">❮</button>
+        <button onclick="zoomOut()" title="Zoom Out">−</button>
+        <button onclick="resetTransform()" id="zoom-level">100%</button>
+        <button onclick="zoomIn()" title="Zoom In">+</button>
+        <button onclick="nextImage()" title="Next">❯</button>
+        <div class="divider"></div>
+        <button onclick="selectImage()" title="Open File">📂</button>
+      </div>
+
+      <div id="gallery-strip" class="glass-control">
+        <!-- Thumbnails -->
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>

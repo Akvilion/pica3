@@ -14,6 +14,8 @@ import (
 var assets embed.FS
 
 func main() {
+	app := NewApp()
+
 	err := wails.Run(&options.App{
 		Title:  "Pica3",
 		Width:  800,
@@ -22,6 +24,10 @@ func main() {
 		BackgroundColour: &options.RGBA{R: 0, G: 0, B: 0, A: 0},
 		AssetServer: &assetserver.Options{
 			Assets: assets,
+		},
+		OnStartup: app.startup,
+		Bind: []interface{}{
+			app,
 		},
 		// Специфічні налаштування для OS
 		Mac: &mac.Options{
