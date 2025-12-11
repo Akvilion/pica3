@@ -6,7 +6,8 @@
       "Bash(systeminfo:*)",
       "Bash(findstr:*)",
       "Bash(tree:*)",
-      "Bash(go build:*)"
+      "Bash(go build:*)",
+      "Bash(wails build:*)"
     ]
   }
 }
